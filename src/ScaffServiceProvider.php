@@ -14,8 +14,12 @@ class ScaffServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('vueAssets', function () {
-            return \File::files(__DIR__ . '/views/vue/shared');
+        $this->app->singleton("vueAssets", function () {
+            return \File::files(__DIR__ . "/views/vue/shared");
+        });
+
+        $this->app->singleton("fieldTypes", function () {
+            return require(__DIR__ . "/config/field-types.php");
         });
     }
 }

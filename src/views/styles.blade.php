@@ -1,15 +1,6 @@
 <style>
-    body, html {
-        font-size: 14px;
-        font-family: Nunito, Helvetica, sans-serif;
-        background-color: #fff;
-        color: #444;
-        font-weight: 100;
-        height: 100vh;
-    }
-
-    body {
-        padding: 2rem 0;
+    .v-application a {
+        text-decoration: none !important;
     }
 
     .loader-parent {
@@ -65,7 +56,7 @@
     }
 
     .apm-switch.apm-checked {
-        background-color: #444;
+        background-color: #0069d9;
     }
 
     .apm-switch-inline .apm-switch {
