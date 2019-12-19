@@ -1,0 +1,23 @@
+{
+    "name": "naveed/scaff",
+    "description": "Laravel Scaffolder / Generator",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Naveed ul Hassan Malik",
+            "email": "naveed@appmakers.pk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Naveed\\Scaff\\": [
+                "src"
+            ]
+        }
+    },
+    "require-dev": {}
+}
