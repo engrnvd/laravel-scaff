@@ -44,6 +44,7 @@
         position: relative;
         background-color: #ddd;
         cursor: pointer;
+        vertical-align: middle;
     }
 
     .apm-switch-inner {
@@ -89,6 +90,26 @@
 
     .apm-switch-label {
         flex-grow: 1;
+    }
+
+    .add-button, .remove-button {
+        font-size: 34px;
+        display: inline-block;
+        cursor: pointer;
+        color: green;
+        line-height: 1;
+    }
+
+    .remove-button {
+        color: darkred;
+    }
+
+    .remove-button:hover {
+        color: maroon;
+    }
+
+    .add-button:hover {
+        color: darkgreen;
     }
 
 </style>

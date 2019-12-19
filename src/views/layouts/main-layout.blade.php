@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-    <header>
+    <header class="text-center">
         <h1>Laravel Scaffolder by Naveed</h1>
     </header>
 
