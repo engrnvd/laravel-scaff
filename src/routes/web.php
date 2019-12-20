@@ -1,6 +1,6 @@
 <?php
 
-Route::view('/', 'naveed.scaff::index');
+Route::get('/', 'HomeController@index');
 //Route::view('/', 'naveed.scaff::pages.index.index');
 Route::view('/crud', 'naveed.scaff::pages.crud.index');
 Route::post('/gen-crud', function () {

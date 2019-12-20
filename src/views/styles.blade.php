@@ -3,6 +3,18 @@
         text-decoration: none !important;
     }
 
+    .page {
+        width: 100%;
+    }
+
+    .table {
+        width: 100%;
+    }
+
+    .table.centered th, .table.centered td {
+        align: center;
+    }
+
     .loader-parent {
         position: absolute;
         z-index: 99;
