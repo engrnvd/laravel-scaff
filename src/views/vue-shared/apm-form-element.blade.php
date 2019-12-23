@@ -10,7 +10,7 @@
         },
         computed: {
             errors() {
-                if (this.model && this.model.$errors && this.model.$errors.hasOwnProperty([this.field]))
+                if (this.model && this.model.$errors && this.model.$errors.hasOwnProperty(this.field))
                     return this.model.$errors[this.field];
                 return "";
             }

@@ -14,4 +14,17 @@ class HomeController extends Controller
             "fieldTypes" => require(__DIR__ . "/../config/field-types.php"),
         ]);
     }
+
+    public function generateCrud(Request $request)
+    {
+        $this->validate($request, [
+            'tableName' => 'required',
+            'fields.*.name' => 'required',
+            'fields.*.type' => 'required',
+        ]);
+        try {
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 422);
+        }
+    }
 }

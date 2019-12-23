@@ -31,7 +31,6 @@
                     data = this.beforeSend();
                 }
                 if (!data) data = this.value;
-                console.log(this.action, data);
 
                 return http.post(this.action, data).then(response => {
                     console.log('success', response);
@@ -44,7 +43,7 @@
                         this.errorResponse = data;
                     } else {
                         let value = {...this.value};
-                        value.$errors = data;
+                        value.$errors = data.errors || data;
                         this.$emit('input', value);
                     }
 

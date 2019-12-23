@@ -45,7 +45,7 @@
         <v-content>
             <v-container class="fill-height" fluid>
                 <v-row align="center" justify="center">
-                    <v-col>
+                    <v-col class="px-12 py-4">
                         <router-view></router-view>
                     </v-col>
                 </v-row>

@@ -1,5 +1,6 @@
 <script>
-    axios.interceptors.response.use(function (response) {
+    const http = axios;
+    http.interceptors.response.use(function (response) {
         return response;
     }, function (error) {
         if (error.response) {
@@ -17,5 +18,4 @@
         }
         return Promise.reject(error);
     });
-    const http = axios;
 </script>

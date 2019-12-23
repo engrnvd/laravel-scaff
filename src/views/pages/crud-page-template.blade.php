@@ -37,14 +37,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="field in form.fields">
+            <tr v-for="(field, index) in form.fields">
                 <td>
-                    <apm-form-element field="name" :model="form">
+                    <apm-form-element :field="'fields.'+index+'.name'" :model="form">
                         <v-text-field v-model="field.name"/>
                     </apm-form-element>
                 </td>
                 <td>
-                    <apm-form-element field="type" :model="form">
+                    <apm-form-element :field="'fields.'+index+'.type'" :model="form">
                         <v-autocomplete
                             :items="fieldTypes"
                             v-model="field.type"
@@ -62,7 +62,7 @@
                     </apm-form-element>
                 </td>
                 <td>
-                    <apm-form-element field="required" :model="form">
+                    <apm-form-element :field="'fields.'+index+'.required'" :model="form">
                         <v-switch v-model="field.required"/>
                     </apm-form-element>
                 </td>
@@ -77,8 +77,14 @@
                     </apm-form-element>
                 </td>
                 <td>
-                    <v-btn class="mx-2" fab dark small color="success">
+                    <v-btn class="mx-2" fab dark small color="success"
+                           @click="form.fields.push(fieldTemplate())">
                         <v-icon dark>mdi-plus</v-icon>
+                    </v-btn>
+                    <v-btn class="mx-2" fab dark small color="red"
+                           v-if="form.fields.length > 1"
+                           @click="form.fields.splice(index, 1)">
+                        <v-icon dark>mdi-minus</v-icon>
                     </v-btn>
                 </td>
             </tr>
