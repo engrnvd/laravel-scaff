@@ -8,4 +8,8 @@ app/Providers/AppServiceProvider.php:
 if ($this->app->environment() !== 'production') {
     $this->app->register(ScaffServiceProvider::class);
 }
+
+3.
+php artisan vendor:publish --provider="Naveed\Scaff\ScaffServiceProvider"
+
 ```

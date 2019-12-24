@@ -3,9 +3,31 @@
 namespace Naveed\Scaff\Controllers;
 
 use Illuminate\Http\Request;
+use Naveed\Scaff\Helpers\MigrationGenerator;
+use Naveed\Scaff\Helpers\Table;
 
 class HomeController extends Controller
 {
+    public function generateCrud(Request $request)
+    {
+        $this->validate($request, [
+            'tableName' => 'required',
+            'fields.*.name' => 'required',
+            'fields.*.type' => 'required',
+        ]);
+
+        $table = new Table($request->all());
+
+        $response = [];
+
+        $response[] = ['title' => 'Migration'] + (new MigrationGenerator($table))->generate();
+        // model
+        // controller
+        // views
+
+        return $response;
+    }
+
     public function index()
     {
         return $this->view('index', [
@@ -15,16 +37,4 @@ class HomeController extends Controller
         ]);
     }
 
-    public function generateCrud(Request $request)
-    {
-        $this->validate($request, [
-            'tableName' => 'required',
-            'fields.*.name' => 'required',
-            'fields.*.type' => 'required',
-        ]);
-        try {
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage(), 422);
-        }
-    }
 }

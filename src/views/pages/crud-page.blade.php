@@ -6,6 +6,7 @@
         data() {
             return {
                 form: {},
+                response: [],
                 fieldTypes: [
                     @foreach($fieldTypes as $type) '{{$type}}', @endforeach
                 ]
@@ -14,19 +15,25 @@
         methods: {
             resetForm() {
                 this.form = {
-                    tableName: '',
-                    idField: '',
+                    tableName: 'expenses',
+                    idField: 'id',
                     timestamps: true,
                     fields: [this.fieldTemplate()]
                 };
             },
+            onSuccess(res) {
+                this.resetForm();
+                this.response = res.data;
+            },
             fieldTemplate() {
                 return {
-                    name: '',
-                    type: '',
-                    length: '',
-                    default: '',
-                    required: true
+                    name: 'title',
+                    type: 'string',
+                    length: '191',
+                    default: 'def-val',
+                    required: true,
+                    index: false,
+                    unique: false,
                 };
             },
         },

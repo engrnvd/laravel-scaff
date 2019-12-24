@@ -1,6 +1,6 @@
 <div id="crud-page" class="page">
     <h2 class="text-center">Generate CRUD</h2>
-    <apm-form action="/naveed/scaff/gen-crud" v-model="form" @on-success="resetForm()">
+    <apm-form action="/naveed/scaff/gen-crud" v-model="form" @on-success="onSuccess">
         <table class="table text-center">
             <tbody>
             <tr>
@@ -96,4 +96,6 @@
             </tbody>
         </table>
     </apm-form>
+
+    <pre>@{{ response }}</pre>
 </div>
