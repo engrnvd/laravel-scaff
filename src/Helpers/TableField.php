@@ -18,13 +18,4 @@ class TableField
             $this->$key = $value;
         }
     }
-
-    public function getMigrationLine()
-    {
-        $line = "\$table->{$this->type}('{$this->name}')";
-        if ($this->default) $line .= "->default('{$this->default}')";
-        if (!$this->required) $line .= "->nullable()";
-        $line .= ";";
-        return $line;
-    }
 }

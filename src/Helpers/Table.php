@@ -10,6 +10,9 @@ class Table
     public $name;
     public $idField;
     public $timestamps;
+    /**
+     * @var TableField[]
+     */
     public $fields = [];
     private $nameSingular;
 

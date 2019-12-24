@@ -1,6 +1,6 @@
 <?php
 /* @var $table \Naveed\Scaff\Helpers\Table */
-/* @var $field \Naveed\Scaff\Helpers\TableField */
+/* @var $gen \Naveed\Scaff\Helpers\MigrationGenerator */
 ?>
 <?="<?php\n"
 ?>
@@ -18,7 +18,7 @@ class Create{{$table->studly()}}Table extends Migration
             $table->bigIncrements('id');
 @endif
 @foreach($table->fields as $field)
-            {!! $field->getMigrationLine() !!}
+            {!! $gen->getMigrationLine($field) !!}
 @if($field->unique)
             $table->unique('{{$field->name}}');
 @elseif($field->index)

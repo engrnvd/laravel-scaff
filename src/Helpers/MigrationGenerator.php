@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Naveed\Scaff\Helpers;
-
 
 class MigrationGenerator
 {
@@ -28,6 +26,7 @@ class MigrationGenerator
     {
         return view(config('naveed-scaff.templates') . '.migration', [
             'table' => $this->table,
+            'gen' => $this,
         ]);
     }
 
@@ -41,4 +40,12 @@ class MigrationGenerator
         return date('Y_m_d_His') . "_create_{$this->table->name}_table.php";
     }
 
+    public function getMigrationLine(TableField $field)
+    {
+        $line = "\$table->{$field->type}('{$field->name}')";
+        if ($field->default) $line .= "->default('{$field->default}')";
+        if (!$field->required) $line .= "->nullable()";
+        $line .= ";";
+        return $line;
+    }
 }
