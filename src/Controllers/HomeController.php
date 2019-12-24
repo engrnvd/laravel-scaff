@@ -4,6 +4,7 @@ namespace Naveed\Scaff\Controllers;
 
 use Illuminate\Http\Request;
 use Naveed\Scaff\Generators\MigrationGenerator;
+use Naveed\Scaff\Generators\ModelGenerator;
 use Naveed\Scaff\Helpers\Table;
 
 class HomeController extends Controller
@@ -17,15 +18,12 @@ class HomeController extends Controller
         ]);
 
         $table = new Table($request->all());
-
-        $response = [];
-
-        $response[] = ['title' => 'Migration'] + (new MigrationGenerator($table))->generate();
-        // model
+        (new MigrationGenerator($table))->generate();
+        (new ModelGenerator($table))->generate();
         // controller
         // views
 
-        return $response;
+        return "Generated";
     }
 
     public function index()

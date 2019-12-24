@@ -6,7 +6,7 @@
         data() {
             return {
                 form: {},
-                response: [],
+                response: "",
                 fieldTypes: [
                     @foreach($fieldTypes as $type) '{{$type}}', @endforeach
                 ]
@@ -20,6 +20,9 @@
                     timestamps: true,
                     fields: [this.fieldTemplate()]
                 };
+            },
+            beforeSend() {
+                this.response = '';
             },
             onSuccess(res) {
                 this.resetForm();

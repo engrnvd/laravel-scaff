@@ -33,11 +33,9 @@
                 if (!data) data = this.value;
 
                 return http.post(this.action, data).then(response => {
-                    console.log('success', response);
                     if (!this.retainValues) this.$emit('input', {});
                     this.$emit('on-success', response);
                 }).catch(response => {
-                    console.log('error', response);
                     let data = response.data;
                     if (typeof data == 'string') {
                         this.errorResponse = data;

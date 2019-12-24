@@ -15,7 +15,7 @@ class Create{{$table->studly()}}Table extends Migration
     {
         Schema::create('{{$table->name}}', function (Blueprint $table) {
 @if ($table->idField)
-            $table->bigIncrements('id');
+            $table->bigIncrements('{{$table->idField}}');
 @endif
 @foreach($table->fields as $field)
             {!! $gen->getMigrationLine($field) !!}
@@ -25,7 +25,7 @@ class Create{{$table->studly()}}Table extends Migration
             $table->index('{{$field->name}}');
 @endif
 @endforeach
-@if ($table->idField)
+@if ($table->timestamps)
             $table->timestamps();
 @endif
         });
