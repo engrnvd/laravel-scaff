@@ -1,6 +1,6 @@
 <?php
 /* @var $table \Naveed\Scaff\Helpers\Table */
-/* @var $gen \Naveed\Scaff\Helpers\MigrationGenerator */
+/* @var $gen \Naveed\Scaff\Generators\MigrationGenerator */
 ?>
 <?="<?php\n"
 ?>

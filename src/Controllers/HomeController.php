@@ -3,7 +3,7 @@
 namespace Naveed\Scaff\Controllers;
 
 use Illuminate\Http\Request;
-use Naveed\Scaff\Helpers\MigrationGenerator;
+use Naveed\Scaff\Generators\MigrationGenerator;
 use Naveed\Scaff\Helpers\Table;
 
 class HomeController extends Controller
