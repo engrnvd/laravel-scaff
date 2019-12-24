@@ -40,7 +40,7 @@
             <tr v-for="(field, index) in form.fields">
                 <td>
                     <apm-form-element :field="'fields.'+index+'.name'" :model="form">
-                        <v-text-field v-model="field.name"/>
+                        <v-text-field v-model="field.name" :autofocus="!!form.tableName.length"/>
                     </apm-form-element>
                 </td>
                 <td>
