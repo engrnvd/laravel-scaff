@@ -10,6 +10,20 @@ return [
     'templates' => 'vendor.naveed.scaff',
 
     /*
+     * Namespace to generate the models in
+     * the directory will dynamically determined using the namespace
+     * */
+
+    'model-namespace' => "App",
+
+    /*
+     * Namespace to generate the controllers in
+     * the directory will dynamically determined using the namespace
+     * */
+
+    'controller-namespace' => "App\Http\Controllers",
+
+    /*
      * Fields that should be skipped on the listing page
      * */
 

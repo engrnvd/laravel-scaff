@@ -19,7 +19,8 @@ class ModelGenerator extends Generator
      */
     protected function getFilePath()
     {
-        return app_path() . "/{$this->table->studly(true)}.php";
+        $directory = $this->getDirectoryFromNamespace(config('naveed-scaff.model-namespace'));
+        return $directory . "/{$this->table->studly(true)}.php";
     }
 
     public function getBulkEditableFields(Table $table)

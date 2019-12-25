@@ -33,5 +33,12 @@ abstract class Generator
         ]);
     }
 
+    protected function getDirectoryFromNamespace($namespace)
+    {
+        $directory = str_replace('App\\', '', $namespace);
+        $directory = join('/', explode('\\', $directory));
+        return app_path($directory);
+    }
+
     abstract protected function getFilePath();
 }

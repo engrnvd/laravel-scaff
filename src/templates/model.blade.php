@@ -5,7 +5,7 @@
 <?='<?php
 '?>
 
-namespace App;
+namespace {{config('naveed-scaff.model-namespace')}};
 
 use Illuminate\Database\Eloquent\Model;
 
