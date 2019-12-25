@@ -18,7 +18,16 @@ class MigrationGenerator extends Generator
      */
     protected function getFilePath()
     {
-        return database_path('migrations') . '/' . date('Y_m_d_His_') . "create_{$this->table->name}_table.php";
+        $migrationDir = database_path('migrations');
+        $fileName = "create_{$this->table->name}_table.php";
+        $migrationFiles = \File::glob($migrationDir . '/*.php');
+
+        foreach ($migrationFiles as $migrationFile) {
+            if (strpos($migrationFile, $fileName) !== false) {
+                return $migrationFile;
+            }
+        }
+        return $migrationDir . '/' . date('Y_m_d_His_') . $fileName;
     }
 
     /**
