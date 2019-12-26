@@ -12,4 +12,7 @@ if ($this->app->environment() !== 'production') {
 3.
 php artisan vendor:publish --provider="Naveed\Scaff\ScaffServiceProvider"
 
+4. Access the generator interface
+<project.url>/naveed/scaff
+
 ```
