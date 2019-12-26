@@ -29,4 +29,11 @@ return [
 
     'skipped-fields' => ['created_at', 'updated_at', 'password', 'token', 'remember_token'],
 
+    /*
+     * All the crud routes will be inserted in a separate file called crud-routes.php
+     * and the file will be included in the following file
+     * */
+
+    'routes-file' => base_path('routes') . "/web.php",
+
 ];

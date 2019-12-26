@@ -13,14 +13,9 @@ use Illuminate\Support\Arr;
 
 class {{$table->studly(true)}}Controller extends Controller
 {
-    public $viewDir = "{{$table->slug(true)}}";
-
     public function index(Request $request)
     {
-        if ($request->wantsJson()) {
-            return {{$table->studly(true)}}::findRequested();
-        }
-        return $this->view("index");
+        return {{$table->studly(true)}}::findRequested();
     }
 
     public function store(Request $request)
@@ -28,6 +23,11 @@ class {{$table->studly(true)}}Controller extends Controller
         ${{$table->camel(true)}} = new {{$table->studly(true)}}($request->all());
         $this->validate($request, ${{$table->camel(true)}}->validationRules());
         return ${{$table->camel(true)}}->save();
+    }
+
+    public function show(Request $request, {{$table->studly(true)}} ${{$table->camel(true)}})
+    {
+        return ${{$table->camel(true)}};
     }
 
     public function update(Request $request, {{$table->studly(true)}} ${{$table->camel(true)}})
@@ -91,11 +91,6 @@ class {{$table->studly(true)}}Controller extends Controller
 
         {{$table->studly(true)}}::whereIn('id', $ids)->update([$fieldName => Arr::get($field, 'value')]);
         return response("Updated");
-    }
-
-    protected function view($view, $data = [])
-    {
-        return view($this->viewDir . "." . $view, $data);
     }
 
     protected function validateUpdatedRequest($field, $value, ${{$table->camel(true)}} = null)

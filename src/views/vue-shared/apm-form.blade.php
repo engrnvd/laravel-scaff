@@ -3,7 +3,7 @@
         template: '<form name="apmForm" @submit.prevent.stop="saveForm" novalidate method="post">' +
             '        <loader v-if="loading"></loader>' +
             '        <slot></slot>' +
-            '        <div v-if="errorResponse" class="alert alert-danger error-message">@{{errorResponse}}</div>' +
+            '        <div v-if="errorResponse" class="red--text text--darken-4">@{{errorResponse}}</div>' +
             '    </form>',
         props: {
             action: String,

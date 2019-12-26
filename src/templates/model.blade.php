@@ -7,7 +7,7 @@
 
 namespace {{config('naveed-scaff.model-namespace')}};
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 /**
  * App\{{$table->studly(true)}}

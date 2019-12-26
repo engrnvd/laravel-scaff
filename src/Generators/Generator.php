@@ -18,7 +18,7 @@ abstract class Generator
     {
         $file = $this->getFilePath();
         $content = $this->getContent();
-        @file_put_contents($file, $content);
+        file_put_contents($file, $content);
         return [
             'file' => $file,
             'content' => (string)$content,
@@ -35,7 +35,7 @@ abstract class Generator
 
     protected function getDirectoryFromNamespace($namespace)
     {
-        $directory = str_replace('App\\', '', $namespace);
+        $directory = str_replace("App", '', $namespace);
         $directory = join('/', explode('\\', $directory));
         return app_path($directory);
     }
