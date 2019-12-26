@@ -23,18 +23,15 @@ class RoutesGenerator extends Generator
     public function generate()
     {
         $file = $this->getFilePath();
-        $existingContent = file_exists($file) ? file_get_contents($file) : "<?php\n";
-        $newContent = $this->getContent();
-        $content = "{$existingContent}\n{$newContent}";
-
-        file_put_contents($file, $content);
+        if (!file_exists($file)) {
+            file_put_contents($file, "<?php\n");
+        }
+        $newContent = $this->getContent() . "\n";
+        $content = $this->upsertContent($newContent, $file);
 
         // check if the file is already included in the main routes file
         $line = 'require_once __DIR__ . "/crud-routes.php";';
-        $existingContent = file_get_contents(config('naveed-scaff.routes-file'));
-        if (strpos($existingContent, $line) === false) {
-            file_put_contents(config('naveed-scaff.routes-file'), "$existingContent\n\n{$line}");
-        }
+        $this->upsertContent($line, config('naveed-scaff.routes-file'));
 
         return [
             'file' => $file,

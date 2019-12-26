@@ -25,7 +25,6 @@ class HomeController extends Controller
         (new ControllerGenerator($table))->generate();
         (new RoutesGenerator($table))->generate();
         // views
-        // routes
 
         return "Generated";
     }

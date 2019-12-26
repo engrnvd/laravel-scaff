@@ -7,7 +7,7 @@
 
 namespace {{config('naveed-scaff.controller-namespace')}};
 
-use App\{{$table->studly(true)}};
+use {{config('naveed-scaff.model-namespace')}}\{{$table->studly(true)}};
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 

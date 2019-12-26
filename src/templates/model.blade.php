@@ -7,10 +7,10 @@
 
 namespace {{config('naveed-scaff.model-namespace')}};
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use {{config('naveed-scaff.parent-model-namespace')}};
 
 /**
- * App\{{$table->studly(true)}}
+ * {{config('naveed-scaff.model-namespace')}}\{{$table->studly(true)}}
  *
 @if ($table->idField)
  * {{'@'}}property string ${{$table->idField}}

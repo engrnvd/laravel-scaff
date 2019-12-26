@@ -17,6 +17,12 @@ return [
     'model-namespace' => "App",
 
     /*
+     * Namespace to of the parent model which the generated model will extend
+     * */
+
+    'parent-model-namespace' => "Jenssegers\Mongodb\Eloquent\Model",
+
+    /*
      * Namespace to generate the controllers in
      * the directory will dynamically determined using the namespace
      * */

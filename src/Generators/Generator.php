@@ -41,4 +41,21 @@ abstract class Generator
     }
 
     abstract protected function getFilePath();
+
+    /**
+     * @param $content
+     * @param $file
+     * Add $content to a $file only if it doesn't exist
+     * @return false|string
+     */
+    protected function upsertContent($content, $file)
+    {
+        $existingContent = file_exists($file) ? file_get_contents($file) : "";
+        if (strpos($existingContent, $content) === false) {
+            $existingContent = $existingContent . $content;
+            file_put_contents($file, $existingContent);
+        }
+
+        return $existingContent;
+    }
 }
