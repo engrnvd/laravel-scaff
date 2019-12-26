@@ -3,6 +3,7 @@
 namespace Naveed\Scaff\Controllers;
 
 use Illuminate\Http\Request;
+use Naveed\Scaff\Generators\ControllerGenerator;
 use Naveed\Scaff\Generators\MigrationGenerator;
 use Naveed\Scaff\Generators\ModelGenerator;
 use Naveed\Scaff\Helpers\Table;
@@ -20,8 +21,9 @@ class HomeController extends Controller
         $table = new Table($request->all());
         (new MigrationGenerator($table))->generate();
         (new ModelGenerator($table))->generate();
-        // controller
+        (new ControllerGenerator($table))->generate();
         // views
+        // routes
 
         return "Generated";
     }

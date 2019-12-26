@@ -27,6 +27,6 @@ return [
      * Fields that should be skipped on the listing page
      * */
 
-    'skipped-fields' => ['id', 'created_at', 'updated_at', 'password', 'token', 'remember_token'],
+    'skipped-fields' => ['created_at', 'updated_at', 'password', 'token', 'remember_token'],
 
 ];

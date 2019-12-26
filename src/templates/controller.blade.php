@@ -5,10 +5,11 @@
 <?='<?php
 '?>
 
-namespace {{config('naveed-scaff.model-namespace')}};
+namespace {{config('naveed-scaff.controller-namespace')}};
 
 use App\{{$table->studly(true)}};
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class {{$table->studly(true)}}Controller extends Controller
 {
@@ -24,20 +25,21 @@ class {{$table->studly(true)}}Controller extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, {{$table->studly(true)}}::validationRules());
-        return {{$table->studly(true)}}::create($request->all());
+        ${{$table->camel(true)}} = new {{$table->studly(true)}}($request->all());
+        $this->validate($request, ${{$table->camel(true)}}->validationRules());
+        return ${{$table->camel(true)}}->save();
     }
 
     public function update(Request $request, {{$table->studly(true)}} ${{$table->camel(true)}})
     {
         if ($request->wantsJson()) {
-            $this->validateUpdatedRequest($request->name, $request->value);
+            $this->validateUpdatedRequest($request->name, $request->value, ${{$table->camel(true)}});
             $data = [$request->name => $request->value];
             ${{$table->camel(true)}}->update($data);
             return ${{$table->camel(true)}};
         }
 
-        $this->validate($request, {{$table->studly(true)}}::validationRules());
+        $this->validate($request, ${{$table->camel(true)}}->validationRules());
         ${{$table->camel(true)}}->update($request->all());
         return ${{$table->camel(true)}};
     }
@@ -51,11 +53,11 @@ class {{$table->studly(true)}}Controller extends Controller
     public function bulkDelete(Request $request)
     {
         $items = $request->items;
-        if(!$items) {
+        if (!$items) {
             abort(403, "Please select some items.");
         }
 
-        if(!$ids = collect($items)->pluck('id')->all()) {
+        if (!$ids = collect($items)->pluck('id')->all()) {
             abort(403, "No ids provided.");
         }
 
@@ -69,7 +71,7 @@ class {{$table->studly(true)}}Controller extends Controller
             abort(403, "Invalid request. Please provide a field.");
         }
 
-        if (!$fieldName = array_get($field, 'name')) {
+        if (!$fieldName = Arr::get($field, 'name')) {
             abort(403, "Invalid request. Please provide a field name.");
         }
 
@@ -77,17 +79,17 @@ class {{$table->studly(true)}}Controller extends Controller
             abort(403, "Bulk editing the {$fieldName} is not allowed.");
         }
 
-        if(!$items = $request->items) {
+        if (!$items = $request->items) {
             abort(403, "Please select some items.");
         }
 
-        if(!$ids = collect($items)->pluck('id')->all()) {
+        if (!$ids = collect($items)->pluck('id')->all()) {
             abort(403, "No ids provided.");
         }
 
-        $this->validateUpdatedRequest($fieldName, array_get($field, 'value'));
+        $this->validateUpdatedRequest($fieldName, Arr::get($field, 'value'));
 
-        {{$table->studly(true)}}::whereIn('id', $ids)->update([$fieldName => array_get($field, 'value')]);
+        {{$table->studly(true)}}::whereIn('id', $ids)->update([$fieldName => Arr::get($field, 'value')]);
         return response("Updated");
     }
 
@@ -96,10 +98,11 @@ class {{$table->studly(true)}}Controller extends Controller
         return view($this->viewDir . "." . $view, $data);
     }
 
-    protected function validateUpdatedRequest($field, $value)
+    protected function validateUpdatedRequest($field, $value, ${{$table->camel(true)}} = null)
     {
+        if (!${{$table->camel(true)}}) ${{$table->camel(true)}} = new {{$table->studly(true)}}();
         $data = [$field => $value];
-        $validator = \Validator::make($data, {{$table->studly(true)}}::validationRules($field));
+        $validator = \Validator::make($data, ${{$table->camel(true)}}->validationRules($field));
         if ($validator->fails()) {
             abort(403, $validator->errors()->first($field));
         }

@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 @foreach ( $table->fields as $field )
  * {{'@'}}method static \Illuminate\Database\Query\Builder|{{$table->studly(true)}} where{{$field->studly()}}($value)
 @endforeach
+ * @mixin \Eloquent
  */
 class {{$table->studly(true)}} extends Model
 {
