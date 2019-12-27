@@ -36,7 +36,8 @@ class MigrationGenerator extends Generator
      */
     public function getMigrationLine(TableField $field)
     {
-        $line = "\$table->{$field->type}('{$field->name}')";
+        $enumValues = $field->type == 'enum' ? ", ['" . join("', '", $field->enumValues) . "']" : "";
+        $line = "\$table->{$field->type}('{$field->name}'{$enumValues})";
         if ($field->default) $line .= "->default('{$field->default}')";
         if (!$field->required) $line .= "->nullable()";
         $line .= ";";

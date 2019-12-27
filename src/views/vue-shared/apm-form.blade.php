@@ -23,7 +23,8 @@
         methods: {
             saveForm() {
                 this.loading = true;
-                this.errorResponse = "";
+                this.errorResponse = '';
+                this.updateModel('$errors', '');
 
                 // get data to post
                 let data = null;
@@ -40,15 +41,19 @@
                     if (typeof data == 'string') {
                         this.errorResponse = data;
                     } else {
-                        let value = {...this.value};
-                        value.$errors = data.errors || data;
-                        this.$emit('input', value);
+                        let errors = data.errors || data;
+                        this.updateModel('$errors', errors);
                     }
 
                     this.$emit('on-error', response);
                 }).then(response => {
                     this.loading = false;
                 });
+            },
+            updateModel(key, val) {
+                let value = {...this.value};
+                value[key] = val;
+                this.$emit('input', value);
             }
         }
     });

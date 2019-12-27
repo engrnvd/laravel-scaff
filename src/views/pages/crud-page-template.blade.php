@@ -56,7 +56,7 @@
                     <apm-form-element field="length" :model="form" v-if="field.type != 'enum'">
                         <v-text-field v-model="field.length"/>
                     </apm-form-element>
-                    <apm-form-element field="enumValues" :model="form" v-if="field.type == 'enum'">
+                    <apm-form-element :field="'fields.'+index+'.enumValues'" :model="form" v-if="field.type == 'enum'">
                         <v-combobox v-model="field.enumValues"
                             :items="[]"
                             multiple

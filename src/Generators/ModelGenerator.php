@@ -32,7 +32,7 @@ class ModelGenerator extends Generator
 
     public function getConditionStr(TableField $field)
     {
-        if (in_array($field->type, ['string', 'text', 'enum', 'date']))
+        if (in_array($field->type, ['string', 'text']))
             return "'{$field->name}', 'like', '%' . request('{$field->name}') . '%'";
         return "'{$field->name}', request('{$field->name}')";
     }
