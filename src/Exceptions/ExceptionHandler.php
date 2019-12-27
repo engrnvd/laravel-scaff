@@ -4,6 +4,7 @@ namespace Naveed\Scaff\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as Handler;
+use Illuminate\Validation\ValidationException;
 
 class ExceptionHandler extends Handler
 {
@@ -20,8 +21,11 @@ class ExceptionHandler extends Handler
 
     public function render($request, Exception $exception)
     {
-        $code = $exception->getCode() ? $exception->getCode() : 400;
+        if ($exception instanceof ValidationException) {
+            return parent::render($request, $exception);
+        }
         $message = $exception->getMessage() ? $exception->getMessage() : $exception->getTraceAsString();
+        $code = $exception->getCode() ? $exception->getCode() : 400;
         return response($message, $code);
     }
 }

@@ -15,7 +15,7 @@
         methods: {
             resetForm() {
                 this.form = {
-                    tableName: 'expenses',
+                    tableName: '',
                     idField: 'id',
                     timestamps: true,
                     fields: [this.fieldTemplate()]
@@ -30,13 +30,14 @@
             },
             fieldTemplate() {
                 return {
-                    name: 'title',
-                    type: 'string',
-                    length: '191',
-                    default: 'def-val',
+                    name: '',
+                    type: '',
+                    length: '',
+                    default: '',
                     required: true,
                     index: false,
                     unique: false,
+                    enumValues: [],
                 };
             },
         },

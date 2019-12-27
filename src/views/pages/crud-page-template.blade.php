@@ -53,8 +53,16 @@
                     </apm-form-element>
                 </td>
                 <td>
-                    <apm-form-element field="length" :model="form">
+                    <apm-form-element field="length" :model="form" v-if="field.type != 'enum'">
                         <v-text-field v-model="field.length"/>
+                    </apm-form-element>
+                    <apm-form-element field="enumValues" :model="form" v-if="field.type == 'enum'">
+                        <v-combobox v-model="field.enumValues"
+                            :items="[]"
+                            multiple
+                            placeholder="Press enter to add a new value"
+                            chips
+                        ></v-combobox>
                     </apm-form-element>
                 </td>
                 <td>

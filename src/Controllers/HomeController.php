@@ -8,6 +8,7 @@ use Naveed\Scaff\Generators\MigrationGenerator;
 use Naveed\Scaff\Generators\ModelGenerator;
 use Naveed\Scaff\Generators\RoutesGenerator;
 use Naveed\Scaff\Helpers\Table;
+use Naveed\Utils\Rules\RequiredIfArray;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,7 @@ class HomeController extends Controller
             'tableName' => 'required',
             'fields.*.name' => 'required',
             'fields.*.type' => 'required',
+            'fields.*.enumValues' => [new RequiredIfArray()],
         ]);
 
         $table = new Table($request->all());
