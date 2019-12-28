@@ -55,6 +55,6 @@
                 value[key] = val;
                 this.$emit('input', value);
             }
-        }
+        },
     });
 </script>

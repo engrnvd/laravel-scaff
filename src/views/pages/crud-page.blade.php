@@ -42,7 +42,18 @@
             },
         },
         mounted() {
-            this.resetForm();
+            let data = localStorage.getItem('apm-form-crud');
+            if (data) {
+                this.form = JSON.parse(data);
+            } else {
+                this.resetForm();
+            }
+            this.$watch('form', {
+                handler(val) {
+                    localStorage.setItem('apm-form-crud', JSON.stringify(val));
+                },
+                deep: true,
+            });
         }
     });
 </script>
