@@ -40,6 +40,15 @@
                     enumValues: [],
                 };
             },
+            loadTableDefinition() {
+                http.get(`/naveed/scaff/load-definition?tableName=${this.form.tableName}`).then(res => {
+                    if (res.data) {
+                        this.form = res.data;
+                    } else {
+                        this.resetForm();
+                    }
+                });
+            }
         },
         mounted() {
             let data = localStorage.getItem('apm-form-crud');

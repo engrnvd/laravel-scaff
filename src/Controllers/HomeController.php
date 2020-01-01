@@ -20,6 +20,8 @@ class HomeController extends Controller
             'fields.*.enumValues' => 'required_if:fields.*.type,enum',
         ]);
 
+        file_put_contents(database_path("table-definitions/{$request->tableName}.json"), json_encode($request->all()));
+
         $table = new Table($request->all());
         (new MigrationGenerator($table))->generate();
         (new ModelGenerator($table))->generate();
@@ -28,6 +30,12 @@ class HomeController extends Controller
         // views
 
         return "Generated";
+    }
+
+    public function getDefinition(Request $request)
+    {
+        $content = @file_get_contents(database_path("table-definitions/{$request->tableName}.json"));
+        return $content ? $content : '';
     }
 
     public function index()

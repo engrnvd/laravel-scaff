@@ -1,4 +1,8 @@
 <style>
+    .table-name-container {
+        width: 100%;
+    }
+
     .v-application a {
         text-decoration: none !important;
     }

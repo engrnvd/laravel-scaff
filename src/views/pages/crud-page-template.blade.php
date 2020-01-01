@@ -6,9 +6,16 @@
             <tbody>
             <tr>
                 <td>
-                    <apm-form-element field="tableName" :model="form">
-                        <v-text-field v-model="form.tableName" label="Table / Collection Name" autofocus/>
-                    </apm-form-element>
+                    <div class="d-flex justify-center align-center table-name-container">
+                        <apm-form-element field="tableName" :model="form" class="flex-grow-1">
+                            <v-text-field v-model="form.tableName" label="Table / Collection Name" autofocus/>
+                        </apm-form-element>
+                        <div class="mx-4">
+                            <a href @click.prevent="loadTableDefinition()" title="Load fields from existing file">
+                                <i class="mdi mdi-refresh"></i>
+                            </a>
+                        </div>
+                    </div>
                 </td>
                 <td>
                     <apm-form-element field="idField" :model="form">
