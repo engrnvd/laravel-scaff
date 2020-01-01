@@ -22,7 +22,8 @@ class {{$table->studly(true)}}Controller extends Controller
     {
         ${{$table->camel(true)}} = new {{$table->studly(true)}}($request->all());
         $this->validate($request, ${{$table->camel(true)}}->validationRules());
-        return ${{$table->camel(true)}}->save();
+        ${{$table->camel(true)}}->save();
+        return ${{$table->camel(true)}};
     }
 
     public function show(Request $request, {{$table->studly(true)}} ${{$table->camel(true)}})

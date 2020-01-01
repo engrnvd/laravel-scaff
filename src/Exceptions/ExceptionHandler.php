@@ -26,6 +26,7 @@ class ExceptionHandler extends Handler
         }
         $message = $exception->getMessage() ? $exception->getMessage() : $exception->getTraceAsString();
         $code = $exception->getCode() ? $exception->getCode() : 400;
+        \Log::error($exception->getMessage() . "\n" . $exception->getTraceAsString());
         return response($message, $code);
     }
 }

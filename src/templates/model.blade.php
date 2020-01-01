@@ -7,6 +7,7 @@
 
 namespace {{config('naveed-scaff.model-namespace')}};
 
+use Illuminate\Support\Arr;
 use {{config('naveed-scaff.parent-model-namespace')}};
 
 /**
@@ -49,7 +50,7 @@ class {{$table->studly(true)}} extends Model
 
         // paginate results
         if ($resPerPage = request("perPage"))
-            return $query->paginate($resPerPage);
+            return $query->paginate(intval($resPerPage));
         return $query->get();
     }
 
@@ -69,12 +70,12 @@ class {{$table->studly(true)}} extends Model
 
         // a single attribute is provided
         if (!is_array($attributes))
-            return [$attributes => $rules[$attributes]];
+            return [$attributes => Arr::get($rules, $attributes, '')];
 
         // a list of attributes is provided
         $newRules = [];
         foreach ($attributes as $attr)
-            $newRules[$attr] = $rules[$attr];
+            $newRules[$attr] = Arr::get($rules, $attr, '');
         return $newRules;
     }
 
