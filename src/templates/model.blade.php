@@ -42,7 +42,7 @@ class {{$table->studly(true)}} extends Model
 
         // search results based on user input
 @foreach ($table->fields as $field)
-        if (\Request::has('{{$field->name}}')) $query->where({!! $gen->getConditionStr($field) !!});
+        if (\Request::{{$field->type === 'boolean' ? 'has' : 'get'}}('{{$field->name}}')) $query->where({!! $gen->getConditionStr($field) !!});
 @endforeach
 
         // sort results
