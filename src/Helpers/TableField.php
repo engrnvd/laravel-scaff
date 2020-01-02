@@ -27,4 +27,14 @@ class TableField
 
         $this->nameSingular = Str::singular($this->name);
     }
+
+    public function isForeignKey()
+    {
+        return preg_match('/_id$/', $this->name);
+    }
+
+    public function getForeignUrl()
+    {
+        return Str::plural(str_replace('_id', '', $this->name));
+    }
 }

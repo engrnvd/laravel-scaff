@@ -42,4 +42,18 @@ return [
 
     'routes-file' => base_path('routes') . "/web.php",
 
+    /*
+     * Where to store the views
+     * */
+    'views-directory' => app_path('frontend/src/views/app/'),
+
+    /*
+     * What views to generate
+     * */
+    'views' => ['index', 'create'],
+
+    /*
+     * View Files extension
+     * */
+    'view-files-extension' => 'vue',
 ];
