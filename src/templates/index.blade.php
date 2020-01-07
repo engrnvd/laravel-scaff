@@ -47,49 +47,51 @@
         <div class="separator mb-5"></div>
 
         <b-card class="mb-4">
-            <table class="table b-table table-hover">
-                <thead>
-                <tr>
-                    <th>ID</th>
+            <div v-top-scrollbar>
+                <table class="table b-table table-hover" v-top-scrollbar-content>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
 @foreach($table->fields as $field)
-                    <th>
-                        <apm-filter
-                            field-name="{{$field->name}}"
-                            field-label="{{$field->title()}}"
-                            v-model="{{$table->camel()}}.config.params"
-                        />
-                    </th>
+                        <th>
+                            <apm-filter
+                                field-name="{{$field->name}}"
+                                field-label="{{$field->title()}}"
+                                v-model="{{$table->camel()}}.config.params"
+                            />
+                        </th>
 @endforeach
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="{{$table->camel(true)}} in {{$table->camel()}}.data.data">
-                    <td>{{'{{'}} {{$table->camel(true)}}.{{$table->idField}} }}</td>
-@foreach($table->fields as $field)
-                    <td>
-                        <apm-editable
-                            type="{{$gen->getEditableType($field)}}"
-                            field="{{$field->name}}"
-                            :url="`/{{$table->slug()}}/{{'${'}}{{$table->camel(true)}}.{{$table->idField}}}`"
-                            v-model="{{$table->camel(true)}}.{{$field->name}}"
-@if ($field->isForeignKey())
-                            dd-options-url="/{{$field->getForeignUrl()}}"
-@endif
-@if ($field->type === 'enum')
-                            :dd-options="[{i: '{{join("'}, {i: '", $field->enumValues)}}'}]"
-@endif
-                            dd-label-field="title"
-                            dd-value-field="{{$table->idField}}"
-                        ></apm-editable>
-                    </td>
-@endforeach
-                    <td class="table-actions">
-                        <apm-delete-btn :url="`/{{$table->slug()}}/{{'${'}}{{$table->camel(true)}}.{{$table->idField}}}`" @on-success="{{$table->camel()}}.send()"></apm-delete-btn>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="{{$table->camel(true)}} in {{$table->camel()}}.data.data">
+                        <td>{{'{{'}} {{$table->camel(true)}}.{{$table->idField}} }}</td>
+    @foreach($table->fields as $field)
+                        <td>
+                            <apm-editable
+                                type="{{$gen->getEditableType($field)}}"
+                                field="{{$field->name}}"
+                                :url="`/{{$table->slug()}}/{{'${'}}{{$table->camel(true)}}.{{$table->idField}}}`"
+                                v-model="{{$table->camel(true)}}.{{$field->name}}"
+    @if ($field->isForeignKey())
+                                dd-options-url="/{{$field->getForeignUrl()}}"
+    @endif
+    @if ($field->type === 'enum')
+                                :dd-options="[{i: '{{join("'}, {i: '", $field->enumValues)}}'}]"
+    @endif
+                                dd-label-field="title"
+                                dd-value-field="{{$table->idField}}"
+                            ></apm-editable>
+                        </td>
+    @endforeach
+                        <td class="table-actions">
+                            <apm-delete-btn :url="`/{{$table->slug()}}/{{'${'}}{{$table->camel(true)}}.{{$table->idField}}}`" @on-success="{{$table->camel()}}.send()"></apm-delete-btn>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
             <apm-pagination :resource="{{$table->camel()}}" class="justify-content-center"/>
             <apm-loader v-if="{{$table->camel()}}.loading">
                 <div class="loading"></div>
@@ -100,7 +102,7 @@
 
 <script>
     import {Resource} from "../../../appmakers-vue/services/http-resource-service";
-    import Create{{$table->studly(true)}}Modal from "./Create{{$table->studly(true)}}Modal";
+    import Create{{$table->studly(true)}}Modal from "./create";
 
     export default {
         name: "index",
@@ -114,7 +116,7 @@
                     {name: '{{$table->idField}}', label: 'ID'},
 @foreach($table->fields as $field)
                     {name: '{{$field->name}}', label: '{{$field->title()}}'},
-@endif
+@endforeach
                 ],
             }
         },

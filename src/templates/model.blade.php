@@ -31,7 +31,7 @@ use {{config('naveed-scaff.parent-model-namespace')}};
 class {{$table->studly(true)}} extends Model
 {
     protected $guarded = ["{{$table->idField}}", "created_at", "updated_at"];
-    public static $bulkEditableFields = ['{{ join("', '", $gen->getBulkEditableFields($table)) }}'];
+    public static $bulkEditableFields = ['{!! join("', '", $gen->getBulkEditableFields($table)) !!}'];
 @if (!collect($table->fields)->where('name', 'created_at')->count())
     public $timestamps = false;
 @endif

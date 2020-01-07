@@ -45,7 +45,7 @@ return [
     /*
      * Where to store the views
      * */
-    'views-directory' => app_path('frontend/src/views/app/'),
+    'views-directory' => base_path('frontend/src/views/app/'),
 
     /*
      * What views to generate
