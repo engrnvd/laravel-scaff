@@ -3,6 +3,7 @@
 namespace Naveed\Scaff\Generators;
 
 use Naveed\Scaff\Helpers\TableField;
+use Naveed\Utils\Helpers\DB;
 
 class MigrationGenerator extends Generator
 {
@@ -42,5 +43,13 @@ class MigrationGenerator extends Generator
         if (!$field->required) $line .= "->nullable()";
         $line .= ";";
         return $line;
+    }
+
+    public function getLineForID()
+    {
+        if (DB::driver() === 'mongodb') {
+            return "";
+        }
+        return "\$table->bigIncrements('{$this->table->idField}');";
     }
 }

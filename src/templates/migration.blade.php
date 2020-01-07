@@ -15,7 +15,7 @@ class Create{{$table->studly()}}Table extends Migration
     {
         Schema::create('{{$table->name}}', function (Blueprint $table) {
 @if ($table->idField)
-            $table->bigIncrements('{{$table->idField}}');
+            {!! $gen->getLineForID() !!}
 @endif
 @foreach($table->fields as $field)
             {!! $gen->getMigrationLine($field) !!}
