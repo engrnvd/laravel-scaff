@@ -4,6 +4,7 @@ namespace Naveed\Scaff\Controllers;
 
 use Illuminate\Http\Request;
 use Naveed\Scaff\Generators\ControllerGenerator;
+use Naveed\Scaff\Generators\ExtraEntriesGenerator;
 use Naveed\Scaff\Generators\MigrationGenerator;
 use Naveed\Scaff\Generators\ModelGenerator;
 use Naveed\Scaff\Generators\RoutesGenerator;
@@ -29,6 +30,7 @@ class HomeController extends Controller
         (new ControllerGenerator($table))->generate();
         (new RoutesGenerator($table))->generate();
         (new ViewsGenerator($table))->generate();
+        (new ExtraEntriesGenerator($table))->generate();
 
         return "Generated";
     }

@@ -56,4 +56,25 @@ return [
      * View Files extension
      * */
     'view-files-extension' => 'vue',
+
+    /*
+     * If you want some extra code to be generated in some existing files, this is where you configure that
+     * filename: The file in which the code will be inserted
+     * template: the template file to be used as a stub for code generation
+     * identifier: the generator will look for this identifier string and put the content before it
+     * */
+    'extra-entries' => [
+        [
+            'filename' => base_path('frontend/src/routes/app.routes.js'),
+            'template' => 'vue-route',
+            'identifier' => '// vue routes generated here. Do not remove this line.',
+        ],
+        [
+            'filename' => base_path('frontend/src/constants/menu.js'),
+            'template' => 'menu-entry',
+            'identifier' => '// menu entries generated here. Do not remove this line.',
+        ],
+    ],
+
+
 ];

@@ -89,6 +89,9 @@
                             <apm-delete-btn :url="`/{{$table->slug()}}/{{'${'}}{{$table->camel(true)}}.{{$table->idField}}}`" @on-success="{{$table->camel()}}.send()"></apm-delete-btn>
                         </td>
                     </tr>
+                    <tr v-if="!{{$table->camel()}}.loading && !{{$table->camel()}}.data.data.length">
+                        <td colspan="50" class="text-secondary">No records found.</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
