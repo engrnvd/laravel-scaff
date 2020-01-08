@@ -17,6 +17,10 @@ abstract class Generator
     public function generate()
     {
         $file = $this->getFilePath();
+        $directory = dirname($file);
+        if (!file_exists($directory)) {
+            mkdir($directory, 777, true);
+        }
         $content = $this->getContent();
         file_put_contents($file, $content);
         return [
