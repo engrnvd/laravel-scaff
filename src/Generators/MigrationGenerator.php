@@ -47,7 +47,7 @@ class MigrationGenerator extends Generator
 
     public function getLineForID()
     {
-        if (\DB::driver() === 'mongodb') {
+        if (DB::driver() === 'mongodb') {
             return "";
         }
         return "\$table->bigIncrements('{$this->table->idField}');";
