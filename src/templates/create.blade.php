@@ -13,11 +13,11 @@
 @foreach($table->fields as $field)
             <apm-form-element field="{{$field->name}}" label="{{$field->title()}}" :model="form">
 @if($field->type === 'enum' && count($field->enumValues) < 3)
-                <b-form-radio-group class="pt-2" :options="['{{join("', '", $field->enumValues)}}']" v-model="form.{{$field->name}}"/>
+                <b-form-radio-group class="pt-2" :options="['{!! join("', '", $field->enumValues) !!}']" v-model="form.{{$field->name}}"/>
 @elseif($field->type === 'text')
                 <b-textarea v-flex-height v-model="form.{{$field->name}}" :rows="2" :max-rows="2"/>
 @elseif($field->type === 'enum')
-                <v-select :options="['{{join("', '", $field->enumValues)}}']" v-model="form.{{$field->name}}"/>
+                <v-select :options="['{!! join("', '", $field->enumValues) !!}']" v-model="form.{{$field->name}}"/>
 @elseif($field->type === 'boolean')
                 <switches v-model="form.{{$field->name}}" theme="custom" color="primary"></switches>
 @else
