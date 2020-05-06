@@ -25,7 +25,7 @@ class ExceptionHandler extends Handler
             return parent::render($request, $exception);
         }
         $message = $exception->getMessage() ? $exception->getMessage() : $exception->getTraceAsString();
-        $code = $exception->getCode() ? $exception->getCode() : 400;
+        $code = $exception instanceof \HttpException && $exception->getCode() ? $exception->getCode() : 400;
         \Log::error($exception->getMessage() . "\n" . $exception->getTraceAsString());
         return response($message, $code);
     }
