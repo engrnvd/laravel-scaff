@@ -11,20 +11,20 @@ return [
 
     /*
      * Namespace to generate the models in
-     * the directory will dynamically determined using the namespace
+     * the directory will be dynamically determined using the namespace
      * */
 
-    'model-namespace' => "App",
+    'model-namespace' => "App/Models",
 
     /*
      * Namespace to of the parent model which the generated model will extend
      * */
 
-    'parent-model-namespace' => "Jenssegers\Mongodb\Eloquent\Model",
+    'parent-model-namespace' => "Illuminate\Database\Eloquent\Model",
 
     /*
      * Namespace to generate the controllers in
-     * the directory will dynamically determined using the namespace
+     * the directory will be dynamically determined using the namespace
      * */
 
     'controller-namespace' => "App\Http\Controllers",
@@ -69,11 +69,11 @@ return [
             'template' => 'vue-route',
             'identifier' => '// vue routes generated here. Do not remove this line.',
         ],
-        [
-            'filename' => base_path('frontend/src/constants/menu.js'),
-            'template' => 'menu-entry',
-            'identifier' => '// menu entries generated here. Do not remove this line.',
-        ],
+//        [
+//            'filename' => base_path('frontend/src/constants/menu.js'),
+//            'template' => 'menu-entry',
+//            'identifier' => '// menu entries generated here. Do not remove this line.',
+//        ],
     ],
 
 
