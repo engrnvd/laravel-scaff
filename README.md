@@ -3,9 +3,9 @@
 composer install naveed/scaff
 
 2.
-app/Providers/AppServiceProvider.php:
+app/Providers/AppServiceProvider.php -> register():
 
-if ($this->app->environment() !== 'production') {
+if ($this->app->environment() === 'local') {
     $this->app->register(ScaffServiceProvider::class);
 }
 
