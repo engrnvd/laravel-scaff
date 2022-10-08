@@ -50,7 +50,12 @@ return [
     /*
      * What views to generate
      * */
-    'views' => ['index.vue', 'create.vue'],
+    'views' => ['index', 'create'],
+
+    /*
+     * View Files extension
+     * */
+    'view-files-extension' => 'vue',
 
     /*
      * If you want some extra code to be generated in some existing files, this is where you configure that

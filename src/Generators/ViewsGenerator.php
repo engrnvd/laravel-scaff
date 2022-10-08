@@ -39,7 +39,8 @@ class ViewsGenerator extends Generator
     protected function getFilePath()
     {
         $directory = config('naveed-scaff.views-directory');
-        return $directory . "{$this->table->slug()}/{$this->templateFile}";
+        $extension = config('naveed-scaff.view-files-extension');
+        return $directory . "{$this->table->slug()}/{$this->templateFile}.{$extension}";
     }
 
     public function generate()
