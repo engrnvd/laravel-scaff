@@ -22,6 +22,10 @@ class HomeController extends Controller
             'fields.*.enumValues' => 'required_if:fields.*.type,enum',
         ]);
 
+        if (!file_exists(database_path("table-definitions"))) {
+            mkdir(database_path("table-definitions"));
+        }
+
         file_put_contents(database_path("table-definitions/{$request->tableName}.json"), json_encode($request->all()));
 
         $table = new Table($request->all());
